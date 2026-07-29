@@ -1,0 +1,34 @@
+{
+  "cache_ttl_seconds": 5,
+  "indicators": {
+    "git_repo": {
+      "enabled": true,
+      "emblem": "emblem-repo-git",
+      "description": "Folder contains a .git directory (or worktree file)"
+    },
+    "claude_dir": {
+      "enabled": true,
+      "emblem": "emblem-repo-claude",
+      "description": "Folder contains a .claude directory"
+    },
+    "uncommitted_changes": {
+      "enabled": true,
+      "emblem": "emblem-repo-dirty",
+      "description": "git status shows staged/unstaged/untracked changes"
+    },
+    "unpushed_commits": {
+      "enabled": true,
+      "emblem": "emblem-repo-unpushed",
+      "description": "Current branch has commits ahead of its upstream (or no upstream at all)"
+    }
+  },
+  "actions": {
+    "open_terminal": true,
+    "open_editor": true,
+    "git_status": true,
+    "git_log": true,
+    "git_pull": true
+  },
+  "editor_command": "code",
+  "terminal_command": null
+}
