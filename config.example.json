@@ -1,0 +1,8 @@
+{
+  "editor_command": "code",
+  "terminal_command": null,
+  "actions": {
+    "open_terminal": true,
+    "open_editor": true
+  }
+}
