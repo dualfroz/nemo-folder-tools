@@ -36,7 +36,7 @@ from nemoRepoCore import (coreConfig, editorAvailable, launchEditor,
                           launchTerminal, localDirectoryPath, requireCore,
                           resolveTerminal)
 
-requireCore("1.0.0")
+requireCore("0.1.0")
 
 pluginDefaults = {
     "actions": {
