@@ -1,13 +1,4 @@
 #!/usr/bin/python3
-"""nemo-folder-tools: "Open Terminal Here" and "Open in Editor" for Nemo.
-
-Nothing here is git specific: the entries appear on any local folder. The
-terminal and the editor command are configurable, and the terminal is
-detected from a list of the common emulators when it is not configured.
-
-Requires nemo-repo-core: https://github.com/dualfroz/nemo-repo-core
-"""
-
 import importlib.util
 import os
 import sys
