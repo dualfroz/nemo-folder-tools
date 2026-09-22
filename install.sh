@@ -1,10 +1,4 @@
 #!/usr/bin/env bash
-# Installs the nemo-folder-tools plugin for the current user. No root needed.
-#
-#   ./install.sh          link the plugin (edits in this checkout go live)
-#   ./install.sh --copy   copy the plugin instead of linking it
-#
-# Requires nemo-repo-core: https://github.com/dualfroz/nemo-repo-core
 set -euo pipefail
 
 sourceDir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -21,13 +15,14 @@ elif [ -n "${1:-}" ]; then
   exit 2
 fi
 
-if [ ! -d "$coreDir/nemoRepoCore" ] && ! python3 -c "import nemoRepoCore" >/dev/null 2>&1; then
-  cat >&2 <<'MESSAGE'
-nemo-repo-core is not installed, and this plugin is nothing without it:
+if ! command -v python3 >/dev/null 2>&1; then
+  echo "python3 is required but was not found in PATH" >&2
+  exit 1
+fi
 
-  git clone https://github.com/dualfroz/nemo-repo-core
-  cd nemo-repo-core && ./install.sh
-MESSAGE
+if [ ! -d "$coreDir/nemoRepoCore" ] && ! python3 -c "import nemoRepoCore" >/dev/null 2>&1; then
+  echo "nemo-repo-core is not installed. Install it first by running" >&2
+  echo "install.sh from a checkout of nemo-repo-core, then run this script again." >&2
   exit 1
 fi
 
@@ -49,15 +44,6 @@ if ! PYTHONPATH="$coreDir:$extensionsDir" python3 -c "import nemoFolderTools" >/
   exit 1
 fi
 echo "Import check passed."
-
-legacyExtension="$extensionsDir/nemo_repo_emblems.py"
-if [ -e "$legacyExtension" ]; then
-  echo
-  echo "WARNING: the pre-split single file extension is still installed:"
-  echo "  $legacyExtension"
-  echo "Running both duplicates emblems, columns and menu entries. Remove it with:"
-  echo "  rm \"$legacyExtension\""
-fi
 
 echo
 echo "Restart Nemo to load the plugin:  nemo -q"
